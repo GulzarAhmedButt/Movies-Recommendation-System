@@ -10,7 +10,7 @@ def home():
 @app.route('/recommendation',methods=['POST'])
 def recommendation():
     movie_name = request.form['movie']
-    similar_movies = list(recommend(movie_name))
+    similar_movies = list(recommend(movie_name.lower()))
     print(similar_movies)
     return render_template('recommendation.html',similar_movies=similar_movies,recommend=True)
 
