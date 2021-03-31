@@ -12,7 +12,7 @@ movies = movies[movies['overview'].notna()]
 
 movies = movies.drop(['production_companies','production_countries','release_date','spoken_languages','status','genres','id','budget','homepage','tagline','keywords','original_language','title'],axis=1)
 
-
+movies['original_title'] = movies['original_title'].apply(lambda x:x.lower())
 tfidf = TfidfVectorizer(min_df=3,ngram_range=(1,3),analyzer='word',stop_words='english')
 tf_matrix = tfidf.fit_transform(movies['overview'])
 sgm = sigmoid_kernel(tf_matrix,tf_matrix)
